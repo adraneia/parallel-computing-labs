@@ -39,7 +39,12 @@ class SharedCounter {
     
     public int get() {
         
-            return n;
+            lock.lock();
+		try {
+		    return n;
+		} finally {    
+		   lock.unlock();
+		}   
        
            
         }
