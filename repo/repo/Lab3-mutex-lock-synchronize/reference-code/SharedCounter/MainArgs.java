@@ -5,7 +5,7 @@ public class MainArgs {
 
         SharedCounter counter = new SharedCounter();
         
-        int numThreads = 10;  	
+        int numThreads = 4;  	
 		CounterThread counterThreads[] = new CounterThread[numThreads];
 		for (int i = 0; i < numThreads; i++) {
 		    counterThreads[i] = new CounterThread(i, counter);

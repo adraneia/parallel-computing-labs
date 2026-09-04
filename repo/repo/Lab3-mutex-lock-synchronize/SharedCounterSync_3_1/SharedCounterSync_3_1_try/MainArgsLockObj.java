@@ -7,19 +7,20 @@ public class MainArgsLockObj {
         int numThreads = 4;  
 
         SharedCounter counter = new SharedCounter();
-	
-		CounterThread counterThreads[] = new CounterThread[numThreads];
+		
+        CounterThread counterThreads[] = new CounterThread[numThreads];
 		for (int i = 0; i < numThreads; i++) {
-		    counterThreads[i] = new CounterThread(counter);
+		    counterThreads[i] = new CounterThread(i, counter);
 		    counterThreads[i].start();
 		}
 	
         for (int i = 0; i < numThreads; i++) {
             try {
-	        counterThreads[i].join();
+	            counterThreads[i].join();
             }
             catch (InterruptedException e) {}
 		} 
+
         System.out.println("n = "+counter.get());
     }
 
@@ -52,14 +53,19 @@ class SharedCounter {
 class CounterThread extends Thread {
   	
     SharedCounter count;
+    int threadID;
     
-    public CounterThread(SharedCounter counter) {
+    public CounterThread(int tid, SharedCounter counter) {
         this.count = counter;
+        this.threadID = tid;
     }
   	
     public void run() {
     
         for (int i = 0; i < 10000; i++) 
             count.inc();
+
+        System.out.println("Thread "+threadID+ " n = "+count.get());
     }    
+    
 }
