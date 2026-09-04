@@ -1,7 +1,4 @@
-
-
-public class SharedCounterArrayGlobal {
-  
+public class SharedCounterArrayGlobal2 {
     static int end = 1000;
     static int[] array = new int[end];
     static int numThreads = 4;
@@ -53,4 +50,3 @@ public class SharedCounterArrayGlobal {
 		}            	
     }
 }
-  
