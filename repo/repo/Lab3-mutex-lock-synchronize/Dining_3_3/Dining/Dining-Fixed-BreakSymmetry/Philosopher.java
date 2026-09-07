@@ -1,24 +1,3 @@
-/*
- * Philosopher.java -- FIXED to avoid deadlock.
- *
- * DEADLOCK CAUSE in the original: every philosopher grabs the SAME
- * relative fork first ("right" then "left"). If all 5 philosophers
- * grab their right fork at roughly the same time, each one is then
- * stuck waiting forever for their left fork, which is held by their
- * neighbor -- a circular wait, i.e. a deadlock.
- *
- * FIX (resource ordering / asymmetry): make ONE philosopher (the
- * "odd one out") grab forks in the OPPOSITE order from everyone
- * else. This breaks the circular wait: there can no longer be a
- * cycle where every philosopher is waiting on the next one, because
- * at least one link in the ring goes the "other way".
- *
- * Here we pick the LAST philosopher (identity == numphils - 1) to
- * grab LEFT first, then RIGHT -- everyone else keeps the original
- * RIGHT-then-LEFT order. We need to know the total number of
- * philosophers to detect "am I the last one?", so we added a
- * "numphils" parameter to the constructor.
- */
 class Philosopher extends Thread {
   private int identity;
   private Fork left;
@@ -70,3 +49,24 @@ class Philosopher extends Thread {
 	} catch (InterruptedException e) { }
   }
 }
+/*
+ * Philosopher.java -- FIXED to avoid deadlock.
+ *
+ * DEADLOCK CAUSE in the original: every philosopher grabs the SAME
+ * relative fork first ("right" then "left"). If all 5 philosophers
+ * grab their right fork at roughly the same time, each one is then
+ * stuck waiting forever for their left fork, which is held by their
+ * neighbor -- a circular wait, i.e. a deadlock.
+ *
+ * FIX (resource ordering / asymmetry): make ONE philosopher (the
+ * "odd one out") grab forks in the OPPOSITE order from everyone
+ * else. This breaks the circular wait: there can no longer be a
+ * cycle where every philosopher is waiting on the next one, because
+ * at least one link in the ring goes the "other way".
+ *
+ * Here we pick the LAST philosopher (identity == numphils - 1) to
+ * grab LEFT first, then RIGHT -- everyone else keeps the original
+ * RIGHT-then-LEFT order. We need to know the total number of
+ * philosophers to detect "am I the last one?", so we added a
+ * "numphils" parameter to the constructor.
+ */

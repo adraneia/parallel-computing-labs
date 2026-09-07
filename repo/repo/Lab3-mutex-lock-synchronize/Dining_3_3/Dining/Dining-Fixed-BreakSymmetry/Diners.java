@@ -1,9 +1,3 @@
-/*
- * Diners.java -- FIXED (only change: pass numphils to each
- * Philosopher's constructor, so it can detect whether it is the
- * "last" philosopher and reverse its fork-grabbing order --
- * see Philosopher.java for the actual deadlock fix).
- */
 public class Diners {
 
     static final int numphils = 5;
@@ -24,3 +18,9 @@ public class Diners {
     }
 
 }
+/*
+ * Diners.java -- FIXED (only change: pass numphils to each
+ * Philosopher's constructor, so it can detect whether it is the
+ * "last" philosopher and reverse its fork-grabbing order --
+ * see Philosopher.java for the actual deadlock fix).
+ */
